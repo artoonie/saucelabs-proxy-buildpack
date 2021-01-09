@@ -7,4 +7,4 @@ BUILD_DIR=$1
 
 wget https://saucelabs.com/downloads/sc-4.6.3-linux.tar.gz
 tar -xzvf sc-4.6.3-linux.tar.gz
-mv ./sc-4.6.3-linux/bin/sc $BUILD_DIR
+mv ./sc-4.6.3-linux/bin/sc "$BUILD_DIR"
