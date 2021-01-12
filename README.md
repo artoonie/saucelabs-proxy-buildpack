@@ -2,13 +2,9 @@
 
 Downloads SauceLabs Connect and places the `sc` binary in your root directory.
 
-To make this work, set the following environment variables:
-```bash
-$SAUCE_USERNAME
-$SAUCE_ACCESS_KEY
-```
+To make this work, set the environment variables `$SAUCE_USERNAME` and `$SAUCE_ACCESS_KEY`, and add the `tunnelIdentifier` query capability.
 
-and add the following Capability when starting. For example, in Python you might have something like:
+## Example: Setting Capability in Python
 
 ```python3
 username = os.environ['SAUCE_USERNAME']
@@ -24,14 +20,12 @@ capabilities = {
 webdriver.Remote(desired_capabilities=capabilities, command_executor=url)
 ```
 
-Then, when starting your script, make sure you call `sc` beforehand and kill it afterward, e.g.:
-```bash
-./sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -i sc-proxy-tunnel-$HEROKU_TEST_RUN_ID &
-./runtest.sh
-kill %
-```
+## Example: Managing SauceConnect lifetime
 
-If your tests rely on the exit code of the `./runtest.sh` script, you will want the exit status of this script to match. To make sure this script doesn't exist with an exit code 0 if `runtest.sh` fails, consider:
+You must ensure you start `sc` before your scripts begin, and kill `sc` when your scripts finish.
+
+The following script will match the exit status of `./runtest.sh`, but sets a trap to ensure `sc` is cleaned up. Without the trap, the tests will hang waiting for `sc` to exit.
+
 ```bash
 set -e
 
