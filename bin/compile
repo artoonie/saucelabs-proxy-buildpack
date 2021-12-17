@@ -5,6 +5,6 @@ set -e
 
 BUILD_DIR=$1
 
-wget https://saucelabs.com/downloads/sc-4.6.5-linux.tar.gz
-tar -xzvf sc-4.6.5-linux.tar.gz
-mv ./sc-4.6.5-linux/bin/sc "$BUILD_DIR"
+wget https://saucelabs.com/downloads/sc-4.7.1-linux.tar.gz
+tar -xzvf sc-4.7.1-linux.tar.gz
+mv ./sc-4.7.1-linux/bin/sc "$BUILD_DIR"
